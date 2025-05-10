@@ -28,7 +28,7 @@ class UnauthenticatedTests(TestCase):
         self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED)
 
     def test_delete_play_user(self):
-        play = Play.objects.create(title="A", description="B")
+        play = Play.objects.create(title="AA", description="B")
         res = self.client.delete(play)
         self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED)
 
