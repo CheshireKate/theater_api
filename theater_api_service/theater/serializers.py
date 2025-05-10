@@ -26,7 +26,7 @@ class PlaySerializer(serializers.ModelSerializer):
 class TheaterHallSerializer(serializers.ModelSerializer):
     class Meta:
         model = TheaterHall
-        fields = ["name", "rows", "seat_in_rows"]
+        fields = ["name", "rows", "seats_in_row"]
 
 
 class PerformanceSerializer(serializers.ModelSerializer):
