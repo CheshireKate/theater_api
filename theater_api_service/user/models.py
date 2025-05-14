@@ -7,3 +7,4 @@ from theater_api_service.theater.models import Ticket
 
 class User(AbstractUser):
     tickets = ForeignKey(Ticket, on_delete=models.CASCADE)
+

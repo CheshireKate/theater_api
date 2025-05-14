@@ -12,28 +12,28 @@ from django.utils import timezone
 
 
 class Actor(models.Model):
-    first_name = CharField(max_length=255, required=True)
-    last_name = CharField(max_length=255, required=True)
+    first_name = CharField(max_length=255, blank=False, null=False)
+    last_name = CharField(max_length=255, blank=False, null=False)
 
 
 class Genre(models.Model):
-    name = CharField(primary_key=True)
+    name = CharField(max_length=255, primary_key=True)
 
 
 class Play(models.Model):
-    title = CharField(primary_key=True)
+    title = CharField(max_length=255, primary_key=True)
     description = TextField(max_length=300, blank=True, null=True)
 
 
 class TheaterHall(models.Model):
-    name = CharField(primary_key=True)
+    name = CharField(max_length=255, primary_key=True)
     rows = IntegerField()
     seats_in_row = IntegerField()
 
 
 class Performance(models.Model):
     play = ForeignKey(Play, on_delete=models.CASCADE)
-    theater_hall = ForeignKey(TheaterHall, on_delete=models.SET_NULL)
+    theater_hall = ForeignKey(TheaterHall, on_delete=models.CASCADE)
     show_time = DateTimeField()
 
     @staticmethod

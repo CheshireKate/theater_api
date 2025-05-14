@@ -1,7 +1,8 @@
-from django.contrib.auth.models import User
+from theater_api_service.user.models import User
+
 from rest_framework import serializers
 
-from models import Play, Actor, Genre, TheaterHall, Performance
+from theater_api_service.theater.models import Play, Actor, Genre, TheaterHall, Performance
 from theater_api_service.theater.models import Reservation, Ticket
 
 
@@ -26,12 +27,12 @@ class PlaySerializer(serializers.ModelSerializer):
 class TheaterHallSerializer(serializers.ModelSerializer):
     class Meta:
         model = TheaterHall
-        fields = ["name", "rows", "seat_in_rows"]
+        fields = ["name", "rows", "seats_in_row"]
 
 
 class PerformanceSerializer(serializers.ModelSerializer):
-    play = serializers.SlugRelatedField(many=False, slug_field="title")
-    theater_hall = serializers.SlugRelatedField(many=False, slug_field="name")
+    play = serializers.SlugRelatedField(queryset=Play.objects.all(), many=False, slug_field="title")
+    theater_hall = serializers.SlugRelatedField(queryset=TheaterHall.objects.all(), many=False, slug_field="name")
 
     class Meta:
         model = Performance
@@ -47,8 +48,8 @@ class ReservationSerializer(serializers.ModelSerializer):
 
 
 class TicketSerializer(serializers.ModelSerializer):
-    performance = serializers.SlugRelatedField(many=False, slug_field="play__title")
-    reservation = serializers.SlugRelatedField(many=False, slug_field="created_at")
+    performance = serializers.SlugRelatedField(queryset=Performance.objects.all(), many=False, slug_field="play__title")
+    reservation = serializers.SlugRelatedField(queryset=Reservation.objects.all(), many=False, slug_field="created_at")
 
     class Meta:
         model = Ticket

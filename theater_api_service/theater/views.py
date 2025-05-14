@@ -1,7 +1,7 @@
 from rest_framework import viewsets
 
-from models import Actor, Genre, Play, Performance, TheaterHall, Ticket, Reservation
-from serializers import (
+from theater_api_service.theater.models import Actor, Genre, Play, Performance, TheaterHall, Ticket, Reservation
+from  theater_api_service.theater.serializers import (
     ActorSerializer,
     GenreSerializer,
     PlaySerializer,

@@ -41,11 +41,8 @@ router.register("tickets", TicketViewSet, basename="ticket")
 router.register("reservations", ReservationViewSet, basename="reservation")
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("api/", include(router.urls)),
     path("", include(router.urls)),
-    path("", include("theater_api_service.user.urls")),
 ]
 
 
-app_name = "theater_api_service"
+app_name = "theater_api_service.theater"
